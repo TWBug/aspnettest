@@ -3,6 +3,7 @@
 
   <PropertyGroup>
     <ManifestsPackagePath>data/</ManifestsPackagePath>
+    <AnalyzersPackagePath>analyzers/</AnalyzersPackagePath>
     <!-- Shared between targeting pack and runtime build. -->
     <PlatformManifestFileName>PlatformManifest.txt</PlatformManifestFileName>
     <PlatformManifestOutputPath>$(ArtifactsObjDir)$(PlatformManifestFileName)</PlatformManifestOutputPath>
@@ -15,7 +16,8 @@
   <ItemGroup>
     <FrameworkListRootAttributes Include="Name" Value="$(AspNetCoreAppFrameworkBrandName)" />
     <FrameworkListRootAttributes Include="TargetFrameworkIdentifier" Value="$(NETCoreAppFrameworkIdentifier)" />
-    <FrameworkListRootAttributes Include="TargetFrameworkVersion" Value="$(DefaultNetCoreTargetFramework.Substring(3))" />
+    <FrameworkListRootAttributes Include="TargetFrameworkVersion"
+      Value="$([MSBuild]::GetTargetFrameworkVersion('$(DefaultNetCoreTargetFramework)', 2))" />
     <FrameworkListRootAttributes Include="FrameworkName" Value="$(SharedFxName)" />
   </ItemGroup>
 
